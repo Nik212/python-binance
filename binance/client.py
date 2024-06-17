@@ -17,7 +17,6 @@ from urllib.parse import urlencode
 from .helpers import interval_to_milliseconds, convert_ts_str, get_loop
 from .exceptions import BinanceAPIException, BinanceRequestException, NotImplementedException
 from .enums import HistoricalKlinesType
-# test
 
 class BaseClient:
 
@@ -3018,8 +3017,10 @@ class Client(BaseClient):
 
     # Margin Trading Endpoints
 
-    def get_pm_account(self, **params):
+    def get_portfolio_margin_account(self, **params):
         return self._request_portfolio_margin_api('get', 'balance', True, data=params)
+    def portfolio_margin_position_information(self, **params):
+        return self._request_portfolio_margin_api('get', '/cm/positionRisk', True, data=params)
 
     def get_margin_account(self, **params):
         """Query cross-margin account details
