@@ -3017,11 +3017,15 @@ class Client(BaseClient):
 
     # Margin Trading Endpoints
 
-    def get_portfolio_margin_account(self, **params):
+    def get_portfolio_margin_account_balances(self, **params):
         return self._request_portfolio_margin_api('get', 'balance', True, data=params)
+    
+    def get_portfolio_margin_account_information(self, **params):
+        return self._request_portfolio_margin_api('get', 'account', True, data=params)
+    
     def portfolio_margin_position_information(self, **params):
-        return self._request_portfolio_margin_api('get', '/cm/positionRisk', True, data=params)
-
+        return self._request_portfolio_margin_api('get', 'cm/positionRisk', True, data=params)
+   
     def get_margin_account(self, **params):
         """Query cross-margin account details
 
@@ -6634,7 +6638,7 @@ class Client(BaseClient):
         https://binance-docs.github.io/apidocs/futures/en/#position-information-user_data
 
         """
-        return self._request_futures_api('get', 'positionRisk', True, 2, data=params)
+        return self._request_futures_api('get', 'positionRisk', True, data=params)
 
     def futures_account_trades(self, **params):
         """Get trades for the authenticated account and symbol.
